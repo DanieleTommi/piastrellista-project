@@ -245,7 +245,7 @@ export const LeadModal: React.FC<{ open: boolean; onClose: () => void }> = ({ op
       <div className="relative w-full sm:w-auto sm:max-w-lg rounded-t-2xl sm:rounded-2xl bg-white shadow-2xl ring-1 ring-zinc-200 flex flex-col overflow-hidden">
         <div className="px-6 pt-6 pb-4">
           <h3 className="text-xl font-semibold tracking-tight text-zinc-900">Quasi Fatto!</h3>
-          <p className="mt-2 text-sm leading-relaxed text-zinc-600">Inserisci i tuoi dati qui sotto per Ricevere Subito la Guida Gratuita...</p>
+          <p className="mt-2 text-sm leading-relaxed text-zinc-600">Inserisci i tuoi dati per ricevere subito la <span className="font-medium text-zinc-900">Guida Operativa Gratuita</span> “Sistema Anti-Passaparola” + checklist rapida.</p>
         </div>
         <form onSubmit={submit} className="px-6 pb-6 space-y-5">
           <div className="space-y-1.5">
@@ -256,16 +256,16 @@ export const LeadModal: React.FC<{ open: boolean; onClose: () => void }> = ({ op
             <label className="text-[12px] font-medium text-zinc-700">Email</label>
             <input type="email" value={email} onChange={e=>setEmail(e.target.value)} required className="w-full rounded-md border border-zinc-300 bg-white px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-zinc-900" placeholder="tuo@email.it" />
           </div>
-          <p className="text-[12px] leading-relaxed text-zinc-600">Sto per rivelarti il sistema che riempirà la tua agenda di clienti migliori.</p>
+          <p className="text-[12px] leading-relaxed text-zinc-600">Riceverai il metodo in 3 leve per ridurre preventivi sprecati e pianificare cantieri migliori.</p>
           <label className="flex items-start gap-2 text-[11px] text-zinc-600">
             <input type="checkbox" checked={consenso} onChange={e=>setConsenso(e.target.checked)} className="mt-0.5" />
             <span>Sì, acconsento al trattamento dei miei dati personali e a ricevere comunicazioni via email per accedere alla guida e ad altri contenuti di valore.</span>
           </label>
           <button disabled={!consenso || submitted} className="w-full rounded-full bg-zinc-900 text-white text-sm font-semibold py-3.5 disabled:opacity-40 disabled:cursor-not-allowed flex items-center justify-center gap-2">
             {submitted && <span className="h-4 w-4 rounded-full border-2 border-white border-t-transparent animate-spin" />}
-            <span>{submitted ? 'Invio...' : 'Sì, Inviami Subito la Guida!'}</span>
+            <span>{submitted ? 'Invio...' : 'Sì, Inviami la Guida Operativa Gratuita'}</span>
           </button>
-          <p className="text-[10px] text-zinc-500">Le tue informazioni sono al sicuro e non saranno mai condivise con nessuno.</p>
+          <p className="text-[10px] text-zinc-500">Le tue informazioni sono al sicuro. Niente spam, solo contenuti applicabili.</p>
         </form>
         <button onClick={onClose} className="absolute top-3 right-3 text-zinc-400 hover:text-zinc-600 text-sm">✕</button>
       </div>
