@@ -101,7 +101,7 @@ export default function LandingPage() {
           </div>
           <div className="mt-8 max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-zinc-900">
-              Riempire l'agenda con cantieri migliori senza svendere il tuo lavoro
+              Scopri come riempire l'agenda con cantieri migliori senza svendere il tuo lavoro
             </h1>
             <p className="mt-5 text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl">Il sistema “Anti-Passaparola” per attirare richieste qualificate e programmare lavori redditizi – anche se oggi dipendi ancora da referenze casuali.</p>
           </div>
@@ -118,7 +118,7 @@ export default function LandingPage() {
               <p className="text-sm font-medium text-zinc-500">NOTA: Questo è l'ESATTO Sistema STEP-BY-STEP che ho usato per aiutare Imprese di Ristrutturazioni a generare un flusso costante di contatti qualificati per lavori importanti... Liberandoli dalla schiavitù dei preventivi al ribasso e riempiendo la loro agenda.</p>
               <div className="mt-6">
                 <button onClick={()=>setModalOpen(true)} className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-zinc-900 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2">
-                  Sì, Voglio il Report GRATIS Adesso!
+                  Sì, Voglio la Guida Operativa Gratuita
                   <span className="opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition">→</span>
                 </button>
                 <p className="mt-4 text-[11px] leading-normal text-zinc-500 max-w-xs">Clicca qui, Inserisci la tua Email Migliore e Accedi Subito alla Guida in PDF (100% Gratis).</p>
@@ -164,7 +164,7 @@ export default function LandingPage() {
           <p className="text-sm font-medium text-zinc-500">…E mooolto, molto di più!</p>
         </div>
         <div className="mt-12">
-          <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio il Report GRATIS Adesso!</button>
+          <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio la Guida Operativa Gratuita</button>
         </div>
       </Section>
 
@@ -186,7 +186,7 @@ export default function LandingPage() {
               <p>Daniele è il creatore del 'Sistema Anti-Passaparola', il primo e unico sistema in Italia progettato per aiutare i piastrellisti a riempire l'agenda con clienti migliori e più redditizi.</p>
             </div>
             <div className="mt-10">
-              <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio il Report GRATIS Adesso!</button>
+              <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio la Guida Operativa Gratuita</button>
             </div>
           </div>
           <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
@@ -263,7 +263,7 @@ export default function LandingPage() {
             <p className="mt-8 text-lg text-zinc-300 leading-relaxed max-w-xl">NOTA: Questo è l'ESATTO Sistema STEP-BY-STEP che ho usato per aiutare Imprese di Ristrutturazioni a generare un flusso costante di contatti qualificati per lavori importanti... Liberandoli dalla schiavitù dei preventivi al ribasso e riempiendo la loro agenda.</p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
               <button onClick={()=>setModalOpen(true)} className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950">
-                Sì, Voglio il Report GRATIS Adesso!
+                Sì, Voglio la Guida Operativa Gratuita
                 <span className="opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition">→</span>
               </button>
               <p className="text-[11px] leading-normal text-zinc-400 max-w-xs">Clicca qui, Inserisci la tua Email e Accedi Subito alla Guida (100% Gratis).</p>
