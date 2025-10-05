@@ -80,10 +80,34 @@ const offerBullets = [
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [heroVariant, setHeroVariant] = useState<'A'|'B'>('A');
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+  // Hero A/B test selection logic
+  useEffect(() => {
+    try {
+      const params = new URLSearchParams(window.location.search);
+      const qp = params.get('hv');
+      let chosen: 'A' | 'B' | null = null;
+      if (qp && (qp.toUpperCase() === 'A' || qp.toUpperCase() === 'B')) {
+        chosen = qp.toUpperCase() as 'A' | 'B';
+      }
+      if (!chosen) {
+        const stored = localStorage.getItem('heroVariant');
+        if (stored === 'A' || stored === 'B') chosen = stored;
+      }
+      if (!chosen) {
+        chosen = Math.random() < 0.5 ? 'A' : 'B';
+      }
+      localStorage.setItem('heroVariant', chosen);
+      setHeroVariant(chosen);
+      console.log('[hero-ab] variant', chosen);
+    } catch (e) {
+      // ignore
+    }
   }, []);
 
   return (
@@ -93,17 +117,29 @@ export default function LandingPage() {
       <StickyMobileCTA scrolled={scrolled} />
       {/* HERO REFACTORED */}
       {/* HERO REFINED: single column headline + below split image/note */}
-      <section className="relative overflow-hidden border-b border-zinc-100 bg-white">
+      <section className="relative overflow-hidden border-b border-zinc-100 bg-white" data-hero-variant={heroVariant}>
         <div className="max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-20">
           <div className="flex flex-wrap items-center gap-4">
             <Countdown />
             <span className="text-[11px] font-medium tracking-wide uppercase text-zinc-500">A tutti i Piastrellisti Stanchi di Preventivi a Vuoto</span>
           </div>
           <div className="mt-8 max-w-3xl">
-            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-zinc-900">
-              Scopri come riempire l'agenda con cantieri migliori senza svendere il tuo lavoro
-            </h1>
-            <p className="mt-5 text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl">Il sistema “Anti-Passaparola” per attirare richieste qualificate e programmare lavori redditizi – anche se oggi dipendi ancora da referenze casuali.</p>
+            {heroVariant === 'A' && (
+              <>
+                <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-zinc-900">
+                  Scopri come riempire l'agenda con cantieri migliori senza svendere il tuo lavoro
+                </h1>
+                <p className="mt-5 text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl">Il sistema “Anti-Passaparola” per attirare richieste qualificate e programmare lavori redditizi – anche se oggi dipendi ancora da referenze casuali.</p>
+              </>
+            )}
+            {heroVariant === 'B' && (
+              <>
+                <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-zinc-900">
+                  La Guida Operativa “Sistema Anti-Passaparola” per attirare richieste qualificate e pianificare cantieri più redditizi
+                </h1>
+                <p className="mt-5 text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl">Le 3 leve pratiche per ridurre i preventivi sprecati e riempire l’agenda con lavori meglio pagati senza pubblicità costosa.</p>
+              </>
+            )}
           </div>
           <div className="mt-14 grid gap-10 md:grid-cols-2 items-start">
             <div className="order-1 md:order-1">
@@ -118,7 +154,7 @@ export default function LandingPage() {
               <p className="text-sm font-medium text-zinc-500">NOTA: Questo è l'ESATTO Sistema STEP-BY-STEP che ho usato per aiutare Imprese di Ristrutturazioni a generare un flusso costante di contatti qualificati per lavori importanti... Liberandoli dalla schiavitù dei preventivi al ribasso e riempiendo la loro agenda.</p>
               <div className="mt-6">
                 <button onClick={()=>setModalOpen(true)} className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-zinc-900 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2">
-                  Sì, Voglio la Guida Operativa Gratuita
+                  {heroVariant === 'B' ? 'Scarica la Guida Operativa Gratuita' : 'Sì, Voglio la Guida Operativa Gratuita'}
                   <span className="opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition">→</span>
                 </button>
                 <p className="mt-4 text-[11px] leading-normal text-zinc-500 max-w-xs">Clicca qui, Inserisci la tua Email Migliore e Accedi Subito alla Guida in PDF (100% Gratis).</p>
