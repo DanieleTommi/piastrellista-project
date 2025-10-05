@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Badge, PrimaryCTA, GhostLink, Section, SectionHeader, LiCard, TimelineStep, CredibilityPanel, FeatureCard, FinalCTA, TrustBar, StickyMobileCTA, NavAnchorBar, GradientBackground, CornerDecoration } from '../components/landing/Blocks';
+import { Badge, PrimaryCTA, GhostLink, Section, SectionHeader, LiCard, TimelineStep, CredibilityPanel, FeatureCard, FinalCTA, TrustBar, StickyMobileCTA, GradientBackground, CornerDecoration, FAQSection, GallerySection, Countdown, LeadModal } from '../components/landing/Blocks';
 
 // New auxiliary lightweight components for Phase 1 enhancements
 const StatBar: React.FC<{ stats: { label: string; value: string }[] }> = ({ stats }) => (
@@ -79,6 +79,7 @@ const offerBullets = [
 
 export default function LandingPage() {
   const [scrolled, setScrolled] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -86,38 +87,56 @@ export default function LandingPage() {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full bg-white text-zinc-900 selection:bg-brand-700/30">
+  <div className="relative min-h-screen w-full bg-white text-zinc-900 selection:bg-zinc-900/10">
       <GradientBackground />
-      <NavAnchorBar />
+  {/* NavAnchorBar rimosso come richiesto */}
       <StickyMobileCTA scrolled={scrolled} />
       {/* HERO REFACTORED */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(0,121,194,0.18),transparent_65%)]" />
-        <div className="max-w-7xl mx-auto px-6 pt-28 pb-32 md:pt-36 md:pb-40">
-          <div className="max-w-3xl">
-            <Badge>Sistema Anti-Passaparola · Guida 2025</Badge>
-            <h1 className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
-              <span className="block">Riempire l'agenda senza</span>
-              <span className="mt-2 block bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent">trattare ogni volta sul prezzo.</span>
+      {/* HERO REFINED: single column headline + below split image/note */}
+      <section className="relative overflow-hidden border-b border-zinc-100 bg-white">
+        <div className="max-w-6xl mx-auto px-6 pt-24 md:pt-32 pb-20">
+          <div className="flex flex-wrap items-center gap-4">
+            <Countdown />
+            <span className="text-[11px] font-medium tracking-wide uppercase text-zinc-500">A tutti i Piastrellisti Stanchi di Preventivi a Vuoto</span>
+          </div>
+          <div className="mt-8 max-w-3xl">
+            <h1 className="text-4xl md:text-5xl font-semibold tracking-tight leading-[1.05] text-zinc-900">
+              Riempire l'agenda con cantieri migliori senza svendere il tuo lavoro
             </h1>
-            <p className="mt-6 text-lg md:text-xl text-zinc-600 leading-relaxed max-w-xl">
-              Un sistema pratico in 3 leve per attirare richieste qualificate e bloccare cantieri con margini sani – anche se oggi vivi di passaparola irregolare.
-            </p>
-            <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
-              <PrimaryCTA href="#cta">Scarica la guida</PrimaryCTA>
-              <GhostLink href="#meccanismo">Come funziona</GhostLink>
+            <p className="mt-5 text-base md:text-lg text-zinc-600 leading-relaxed max-w-2xl">Il sistema “Anti-Passaparola” per attirare richieste qualificate e programmare lavori redditizi – anche se oggi dipendi ancora da referenze casuali.</p>
+          </div>
+          <div className="mt-14 grid gap-10 md:grid-cols-2 items-start">
+            <div className="order-1 md:order-1">
+              <div className="relative aspect-[3/4] w-full max-w-sm rounded-2xl border border-zinc-200 bg-zinc-50 flex items-center justify-center shadow-sm">
+                <div className="text-center px-6">
+                  <div className="mx-auto h-16 w-16 rounded-xl bg-zinc-900 text-white flex items-center justify-center text-xs font-medium tracking-wide">PDF</div>
+                  <p className="mt-6 text-sm font-medium text-zinc-500">Mockup 3D della guida<br/>“Il Sistema Anti-Passaparola”</p>
+                </div>
+              </div>
             </div>
-            <StatBar stats={[
-              { label: 'Cantieri recenti', value: '+47' },
-              { label: 'Richieste qualificate', value: '+180' },
-              { label: 'Giorni medi slot', value: '5' }
-            ]} />
+            <div className="order-2 md:order-2 max-w-lg">
+              <p className="text-sm font-medium text-zinc-500">NOTA: Questo è l'ESATTO Sistema STEP-BY-STEP che ho usato per aiutare Imprese di Ristrutturazioni a generare un flusso costante di contatti qualificati per lavori importanti... Liberandoli dalla schiavitù dei preventivi al ribasso e riempiendo la loro agenda.</p>
+              <div className="mt-6">
+                <button onClick={()=>setModalOpen(true)} className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-zinc-900 px-8 py-3.5 text-sm font-semibold text-white transition hover:bg-black focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-900 focus-visible:ring-offset-2">
+                  Sì, Voglio il Report GRATIS Adesso!
+                  <span className="opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition">→</span>
+                </button>
+                <p className="mt-4 text-[11px] leading-normal text-zinc-500 max-w-xs">Clicca qui, Inserisci la tua Email Migliore e Accedi Subito alla Guida in PDF (100% Gratis).</p>
+              </div>
+              <div className="mt-10 grid gap-6 sm:grid-cols-3">
+                {[{ label: 'Cantieri recenti', value: '+47' },{ label: 'Richieste qualificate', value: '+180' },{ label: 'Giorni medi slot', value: '5' }].map((s,i)=>(
+                  <div key={i} className="text-center rounded-xl border border-zinc-200 bg-white px-4 py-5 shadow-sm">
+                    <div className="text-[11px] font-medium tracking-wide uppercase text-zinc-500">{s.label}</div>
+                    <div className="mt-2 text-lg font-bold tracking-tight text-zinc-900">{s.value}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
-        <CornerDecoration />
       </section>
 
-      <Section id="dolore" tone="subtle">
+  <Section id="dolore" tone="muted">
         <SectionHeader kicker="Problemi quotidiani" title="Se sei un piastrellista, scommetto che questa è la tua settimana tipo..." />
         <ul className="mt-12 grid gap-6 md:grid-cols-2">
           {painPoints.map((p, i) => (
@@ -126,31 +145,67 @@ export default function LandingPage() {
         </ul>
       </Section>
 
-      <Section id="desiderio">
-        <SectionHeader kicker="Scenario ideale" title="E se invece potessi lavorare così?" gradient />
-        <ul className="mt-12 grid gap-6 md:grid-cols-2">
-          {desires.map((d, i) => (
-            <LiCard key={i} index={i+1} text={d} />
+      {/* BULLET LIST / PREVIEW */}
+  <Section id="anteprima">
+        <SectionHeader kicker="Anteprima" title="Ecco un'anteprima di quello che scoprirai all'interno:" />
+        <div className="mt-12 space-y-10">
+          {[
+            { n:'1#', t:'La Formula in 3 Semplici Passi per attirare clienti che cercano la QUALITÀ (e non lo sconto) senza dover fare il venditore… anche se non hai un sito web!' },
+            { n:'2#', t:'L’Errore Fatale nel farsi pubblicità – Una strategia ignorata dal 95% degli Artigiani… Applica questa correzione IMMEDIATA per smettere di attirare perditempo ed EVITARE di sprecare tempo prezioso.' },
+            { n:'3#', t:'Il Mito Infondato del “Passaparola”: Scopri perché affidarti solo a questo ti sta facendo perdere i cantieri migliori e come costruire un’alternativa PREVEDIBILE per la tua agenda... Come confermato dai professionisti di successo!' },
+            { n:'4#', t:'Come EVITARE la trappola dei portali che ti mettono in competizione con altri 10 colleghi… e diventare finalmente la prima e unica scelta per i clienti che contano davvero nella tua zona.' },
+            { n:'5#', t:'RIVELATO: Il Falso Mito del “Devi spendere tanto in pubblicità” che blocca i piastrellisti... E come una semplice strategia a basso costo può portarti più richieste qualificate di quante tu possa gestire.' }
+          ].map((b,i)=>(
+            <div key={i} className="relative pl-14">
+              <div className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900 text-white text-sm font-medium">{b.n}</div>
+              <p className="text-sm leading-relaxed text-zinc-700">{b.t}</p>
+            </div>
           ))}
-        </ul>
+          <p className="text-sm font-medium text-zinc-500">…E mooolto, molto di più!</p>
+        </div>
+        <div className="mt-12">
+          <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio il Report GRATIS Adesso!</button>
+        </div>
       </Section>
 
-      <Section id="soluzione" tone="muted">
-        <div className="max-w-3xl">
-          <SectionHeader kicker="Metodo in 3 passi" title="Non è Magia, è un Sistema Testato sul Campo." />
-          <p className="mt-6 text-lg text-zinc-600 leading-relaxed">Ho creato un metodo in 3 passi, facile da applicare, pensato per chi lavora in cantiere e non ha tempo da perdere con teorie di marketing complicate.</p>
-        </div>
-        <div className="mt-14 relative">
-          <ol className="space-y-10 before:absolute before:left-[19px] md:before:left-[29px] before:top-0 before:bottom-0 before:w-px before:bg-gradient-to-b before:from-brand-300/40 before:via-brand-400/50 before:to-brand-300/40">
-            {steps.map(s => (
-              <TimelineStep key={s.number} {...s} />
-            ))}
-          </ol>
+      {/* AUTHOR / SYSTEM ORIGIN */}
+  <Section id="autore">
+        <div className="grid gap-12 lg:grid-cols-2 items-start">
+          <div>
+            <SectionHeader kicker="Da dove nasce" title="Da Dove Nasce Questo Sistema (E Perché Funziona)" />
+            <div className="mt-8 space-y-6 text-sm md:text-[15px] leading-relaxed text-zinc-700">
+              <p>Daniele Tomasi non è un piastrellista, ma uno stratega specializzato nell'aiutare le piccole imprese edili e gli artigiani a liberarsi dalla dipendenza dal passaparola e dai clienti che trattano sul prezzo.</p>
+              <p>Negli ultimi anni, Daniele ha applicato con successo il 'Sistema Anti-Passaparola' per diverse imprese di ristrutturazioni, generando per loro un flusso costante e prevedibile di contatti da clienti privati per lavori importanti (interi appartamenti e ville).</p>
+              <p>La sua esperienza gli ha permesso di capire una cosa fondamentale: il meccanismo per trovare un cliente disposto a pagare per una ristrutturazione di qualità è lo stesso che serve a te per trovare chi vuole una posa a regola d'arte in quella stessa casa.</p>
+              <p>Ecco SOLO ALCUNI dei principi alla base di questo sistema…</p>
+              <ul className="space-y-3 text-zinc-700">
+                <li><span className="font-semibold">Principio #1:</span> Intercettare la domanda consapevole (anziché sperare che qualcuno parli di te).</li>
+                <li><span className="font-semibold">Principio #2:</span> Comunicare il VALORE prima ancora di parlare del PREZZO.</li>
+                <li><span className="font-semibold">Principio #3:</span> Creare un sistema AUTOMATICO che lavora per te anche quando sei in cantiere.</li>
+              </ul>
+              <p>Daniele è il creatore del 'Sistema Anti-Passaparola', il primo e unico sistema in Italia progettato per aiutare i piastrellisti a riempire l'agenda con clienti migliori e più redditizi.</p>
+            </div>
+            <div className="mt-10">
+              <button onClick={()=>setModalOpen(true)} className="rounded-full bg-zinc-900 text-white text-sm font-semibold px-8 py-3.5 hover:bg-black transition">Sì, Voglio il Report GRATIS Adesso!</button>
+            </div>
+          </div>
+          <div className="relative overflow-hidden rounded-2xl border border-zinc-200 bg-white p-8 shadow-sm">
+            <h3 className="text-base font-semibold tracking-tight text-zinc-900">Il Sistema in sintesi</h3>
+            <ol className="mt-6 space-y-8">
+              {steps.map(s => (
+                <li key={s.number} className="relative pl-12">
+                  <div className="absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full bg-zinc-900 text-white text-sm font-medium">{s.number}</div>
+                  <p className="text-sm font-semibold text-zinc-900 tracking-tight">{s.title}</p>
+                  <p className="mt-2 text-sm leading-relaxed text-zinc-600">{s.body}</p>
+                </li>
+              ))}
+            </ol>
+          </div>
         </div>
       </Section>
 
       {/* TRASPARENZA / AUTORITÀ */}
-      <Section id="prova" tone="contrast">
+  <Section id="prova" tone="muted">
         <div className="grid gap-12 lg:grid-cols-2 items-start">
           <div>
             <SectionHeader kicker="Trasparenza" title="Da dove nasce il sistema (e perché funziona)" invert />
@@ -164,8 +219,8 @@ export default function LandingPage() {
         </div>
       </Section>
 
-      <Section id="offerta">
-        <SectionHeader kicker="Cosa scoprirai" title={'Dentro la guida: elementi subito applicabili'} gradient />
+  <Section id="offerta">
+        <SectionHeader kicker="Cosa scoprirai" title={'Dentro la guida: elementi subito applicabili'} />
         <p className="mt-6 text-lg text-zinc-600 max-w-2xl">Struttura essenziale, zero fronzoli: implementi anche con giornate piene in cantiere.</p>
         <div className="mt-12 grid gap-6 lg:grid-cols-2">
           {offerBullets.map((b, i) => (
@@ -174,11 +229,57 @@ export default function LandingPage() {
         </div>
       </Section>
 
-      <Mechanism />
+  <Section id="gallery" tone="muted">
+        <SectionHeader kicker="Dimostrazione" title="Come deve apparire una galleria che vende qualità" />
+        <p className="mt-6 text-lg text-zinc-600 max-w-2xl">Struttura modulare: ogni cantiere racconta processo, dettagli e risultato finale in modo leggibile anche per chi non è tecnico.</p>
+        <GallerySection items={[
+          { title: 'Bagno design 14 mq', meta: 'Prima/Dopo · Fuga ridotta' },
+          { title: 'Soggiorno grande formato', meta: '120x120 · Tagli puliti' },
+          { title: 'Scala interna', meta: 'Rivestimento completo' },
+          { title: 'Doccia filo pavimento', meta: 'Pendenza ottimizzata' },
+          { title: 'Esterno gres 2cm', meta: 'Posa su supporti' },
+          { title: 'Cucina esagonale', meta: 'Pattern complesso' }
+        ]} />
+      </Section>
 
-      <Testimonials />
+  <Section id="faq">
+        <SectionHeader kicker="Domande frequenti" title="Prima di scaricare potresti chiederti…" />
+        <FAQSection items={[
+          { q: 'Quanto tempo serve per applicarlo?', a: 'I primi elementi (galleria strutturata e filtro richieste) li imposti in un weekend. Il resto si integra via via nei cantieri già programmati.' },
+          { q: 'Serve fare pubblicità a pagamento?', a: 'No. Le leve iniziali sono organiche: visibilità locale ottimizzata + dimostrazione qualità + canalizzazione richieste.' },
+          { q: 'Funziona anche se ho pochi lavori fotografati?', a: 'Sì: ti mostro come documentare i prossimi 2 cantieri per costruire rapidamente la base visiva credibile.' },
+          { q: 'È un corso lungo?', a: 'No, è una guida operativa sintetica. Less is more: solo ciò che serve per generare richieste utili.' },
+          { q: 'Perdo tempo se già ho passaparola?', a: 'Al contrario: organizzi, rendi prevedibile e filtri. Il passaparola rimane, ma non è più l\'unica gamba.' }
+        ]} />
+      </Section>
 
-      <FinalCTA />
+      {/* FINAL CTA DUPLICATED */}
+      <Section id="cta" tone="contrast">
+        <div className="grid gap-12 lg:grid-cols-2 items-start">
+          <div>
+            <p className="text-[11px] font-medium tracking-wide uppercase text-zinc-400">Accedi SUBITO alla Tua Copia GRATUITA...</p>
+            <h2 className="mt-6 text-3xl md:text-4xl font-semibold tracking-tight leading-[1.1] text-white">SVELATO: “Ecco FINALMENTE Come i Piastrellisti Possono Riempire l'Agenda con Cantieri più Redditizi grazie al mio Sistema “Anti-Passaparola”... e Dire Addio per Sempre alla Guerra dei Prezzi al Metro Quadro...</h2>
+            <p className="mt-6 text-sm font-medium text-zinc-400">(Anche se odi la tecnologia e pensi che l'unica alternativa al passaparola sia buttare soldi in pubblicità inutile!)</p>
+            <p className="mt-8 text-lg text-zinc-300 leading-relaxed max-w-xl">NOTA: Questo è l'ESATTO Sistema STEP-BY-STEP che ho usato per aiutare Imprese di Ristrutturazioni a generare un flusso costante di contatti qualificati per lavori importanti... Liberandoli dalla schiavitù dei preventivi al ribasso e riempiendo la loro agenda.</p>
+            <div className="mt-10 flex flex-col sm:flex-row gap-4 sm:items-center">
+              <button onClick={()=>setModalOpen(true)} className="group relative inline-flex items-center justify-center gap-2 rounded-full bg-white px-8 py-3.5 text-sm font-semibold text-zinc-900 transition hover:bg-zinc-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-zinc-950">
+                Sì, Voglio il Report GRATIS Adesso!
+                <span className="opacity-0 translate-x-0 group-hover:opacity-100 group-hover:translate-x-1 transition">→</span>
+              </button>
+              <p className="text-[11px] leading-normal text-zinc-400 max-w-xs">Clicca qui, Inserisci la tua Email e Accedi Subito alla Guida (100% Gratis).</p>
+            </div>
+          </div>
+          <div className="w-full max-w-sm mx-auto lg:mx-0">
+            <div className="relative aspect-[3/4] w-full rounded-2xl border border-zinc-800/60 bg-zinc-900 flex items-center justify-center">
+              <div className="text-center px-6">
+                <div className="mx-auto h-16 w-16 rounded-xl bg-white text-zinc-900 flex items-center justify-center text-xs font-medium tracking-wide">PDF</div>
+                <p className="mt-6 text-sm font-medium text-zinc-400">Mockup 3D della guida<br/>“Il Sistema Anti-Passaparola”</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </Section>
+      <LeadModal open={modalOpen} onClose={()=>setModalOpen(false)} />
     </div>
   );
 }
