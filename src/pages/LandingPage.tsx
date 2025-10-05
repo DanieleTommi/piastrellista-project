@@ -45,7 +45,7 @@ export default function LandingPage() {
             <Badge>Guida Gratuita • Edizione 2025</Badge>
             <h1 className="mt-6 text-4xl md:text-6xl font-extrabold tracking-tight leading-[1.05]">
               <span className="block">Stanco di Clienti che Trattano sul Prezzo?</span>
-              <span className="mt-3 block bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent">Trasforma la Tua Agenda con Cantieri che Pagano il Giusto.</span>
+              <span className="mt-3 block bg-gradient-to-br from-brand-700 via-brand-600 to-brand-500 bg-clip-text text-transparent pb-5">Trasforma la Tua Agenda con Cantieri che Pagano il Giusto.</span>
             </h1>
             <p className="mt-8 text-lg md:text-xl text-zinc-600 leading-relaxed max-w-2xl">
               Smetti di dipendere dal passaparola e inizia ad attirare clienti che cercano e pagano per la tua qualità, senza più "buchi" in agenda o preventivi a vuoto.
